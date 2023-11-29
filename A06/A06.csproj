@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="default.aspx" />
     <Content Include="StyleSheet.css" />
+    <Content Include="Scripts\textEditorQuery.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
