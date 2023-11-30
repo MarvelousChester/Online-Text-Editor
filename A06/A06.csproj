@@ -67,18 +67,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="default.aspx" />
+    <Content Include="MyFiles\Sample.txt" />
+    <Content Include="startPage.aspx" />
     <Content Include="StyleSheet.css" />
     <Content Include="Scripts\textEditorQuery.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="startPage.aspx.cs">
+      <DependentUpon>startPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="startPage.aspx.designer.cs">
+      <DependentUpon>startPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
