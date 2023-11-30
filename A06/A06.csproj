@@ -44,6 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GetFiles.aspx" />
     <Content Include="MyFiles\Sample.txt" />
     <Content Include="startPage.aspx" />
     <Content Include="StyleSheet.css" />
@@ -74,6 +79,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetFiles.aspx.cs">
+      <DependentUpon>GetFiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetFiles.aspx.designer.cs">
+      <DependentUpon>GetFiles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="startPage.aspx.cs">
       <DependentUpon>startPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
