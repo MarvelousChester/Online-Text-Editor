@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="A06._default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="startPage.aspx.cs" Inherits="A06._default" %>
 
 <!DOCTYPE html>
 
@@ -15,7 +15,17 @@
                 var len = $("#main_editor_text_editor").val().length;
 
                 $("#character_count").text(len);
+
+                // Unhide the Button/ Ungray it here
+
+               
             });
+
+            // Drop Down List Select, IF select grab thee text and display it -> Indicate a mess as well that it has been selected
+
+            // BUtton Press Function Jquery Save
+
+            // Button Press Function Jquery Save As
         });
     </script>
 
