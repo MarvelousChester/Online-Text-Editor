@@ -15,6 +15,9 @@
             // GEt List 
             fillListWithFileNames();
 
+            /*
+                Purpose: User Types, it will update character and unhide the button
+            */
             $("#main_editor_text_editor").on("input", function () {
                 var len = $("#main_editor_text_editor").val().length;
 
@@ -23,7 +26,6 @@
                 // Unhide the Button/ Ungray it here
                 $("#saving").prop("disabled", false);
                 $("#saving_as").prop("disabled", false);
-
 
             });
         });
@@ -36,17 +38,21 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 // Parse Data
-                success: function (data) {
+                success: function (fileNames, status) {
 
-                    if (data != null & data.d != null) {
+                    // Check if null was not given else fill list with samples files
+                    if (fileNames != null & fileNames.d != null) {
 
                         var response;
-                        response = $.parseJSON(data.d);
+                        response = $.parseJSON(fileNames.d);
+                        alert(response.fileNames);
+                        var optionStringHtml = "<option value=" + response.fileNames + ">" + response.fileNames + "</option>";
+                        $
                         // Append to List
-                        $.each(response, function (index, value) {
-                            
-                            var optionStringHtml = "#<asp:ListItem>" + value + "</asp:ListItem>";
-                            $("#file_drop_down_list").append(optionStringHtml);
+                        $.each(response.fileNames, function (index, name) {
+
+                            var optionStringHtml = "<option value='" + name + "'>" + name + "</option>";
+                             $("#file_drop_down_list").append(optionStringHtml);
                         });
 
                     }
@@ -77,9 +83,11 @@
                 <asp:Button runat="server" ID="saving_as" Text="Save As" disabled="true"/> 
             
                 <asp:Label runat="server" Text="Select File"></asp:Label>
-                <asp:DropDownList runat="server" ID="file_drop_down_list" DataTextField="Select File">
-                    
-                </asp:DropDownList> <!-- Have to Choose Data Source and make first, Select File -->
+                <select id="file_drop_down_list">
+                    <option value=""> </option>
+                </select> <!-- Have to Choose Data Source and make first, Select File -->
+                <asp:Button runat="server" ID="load" Text="Load File"/> 
+
             </div>
             
             <br />

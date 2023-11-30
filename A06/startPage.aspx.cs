@@ -6,7 +6,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 
 namespace A06
@@ -20,12 +20,13 @@ namespace A06
 		[WebMethod]
 		public static string GetFileList()
 		{
-		
-			string filePath = "MyFiles";
+
+			string filePath = "C:\\Users\\karandeep\\source\\A06\\A06\\MyFiles";
 			string fileStatus;
-			string[] names = {};
+			List<string> names = new List<string>();
 			
-			if (File.Exists(filePath))
+			
+			if (Directory.Exists(filePath))
 			{
 
 				fileStatus = "Success";
@@ -34,9 +35,7 @@ namespace A06
 				foreach (string file in eachFilePaths)
 				{
 
-					names.Append(Path.GetFileName(file));
-
-
+					names.Add(Path.GetFileName(file));
 
 				}
 			}
@@ -47,7 +46,8 @@ namespace A06
 			}
 
 			// return built string in json
-			string jsonData = JsonSerializer.Serialize(new {status = fileStatus, fileNames = names});
+			string[] namesInArray = names.ToArray();
+			string jsonData = JsonConvert.SerializeObject(new {status = fileStatus, fileNames = namesInArray });
 			return jsonData;
 		}
 
