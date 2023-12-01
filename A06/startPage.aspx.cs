@@ -77,5 +77,33 @@ namespace A06
 			return jsonData;
 		}
 
+
+		/*
+		 * 
+		 * Purposse: Checks if File exists, if file exists, then writes content passed from client and then sends back status in json format
+		 * 
+		 */
+
+		[WebMethod]
+		public static string SaveFile(string fileToSave, string content)
+		{
+
+			string filePath = Path.Combine(HttpContext.Current.Server.MapPath("MyFiles"), fileToSave);
+			string fileStatus;
+			
+			if (File.Exists(filePath))
+			{
+
+				fileStatus = "Success";
+				File.WriteAllText(filePath, content);
+			}
+			else
+			{
+				fileStatus = "Fail";
+			}
+
+			string jsonData = JsonConvert.SerializeObject(new { status = fileStatus });
+			return jsonData;
+		}
 	}
 }

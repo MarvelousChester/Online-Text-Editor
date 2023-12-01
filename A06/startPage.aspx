@@ -80,19 +80,21 @@
                 return false;
             });
 
-
             $("#saving_bt").click(function () {
-
+                $alert("Yes")
+               
                 // Check if current file Opened or not
                 if (currentOpenedfile != "") {
 
                     // Trigger Save As Option
                 }
+            
                 saveFile(currentOpenedFile);
+
                 return false;
 
-
-            })
+            });
+         
         });
 
         /*
@@ -172,14 +174,36 @@
             });
         }
 
-
+        /*
+          Name: fillListWithFileNames
+          Purpose: Makes a post to server with file name and content of file in json format and saves it to server. 
+          Param : None
+          Return: None
+        */
         function saveFile(name) {
 
             // Stores Content and Name of File
+
             var jsonData = { fileToSave: name, content: $("main_editor_text_editor").val() };
             var jsonString = JSON.stringify(jsonData);
 
+            $alert(jsonData);
+            jQueryXMLHttpRequest = $.ajax({
+                type: "POST",
+                url: "startPage.aspx/SaveFile",
+                data: jsonString,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
 
+                success: function (status) {
+
+                    $("status").val("File Saved!");
+                },
+                fail: function () {
+
+                    $alert("Saving Failed");
+                }
+            });
 
         }
         // Drop Down List Select, IF select grab thee text and display it -> Indicate a mess as well that it has been selected
@@ -206,7 +230,7 @@
                     <option value=""> </option>
                 </select> <!-- Have to Choose Data Source and make first, Select File -->
                 <button id="load_file_bt" >Load File</button>
-
+                <label id="status"></label>
             </div>
             
             <br />
