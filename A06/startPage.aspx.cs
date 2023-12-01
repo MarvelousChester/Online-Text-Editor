@@ -21,7 +21,7 @@ namespace A06
 		public static string GetFileList()
 		{
 
-			string filePath = "C:\\Users\\karandeep\\source\\A06\\A06\\MyFiles";
+			string filePath = HttpContext.Current.Server.MapPath("MyFiles");
 			string fileStatus;
 			List<string> names = new List<string>();
 			
@@ -52,6 +52,30 @@ namespace A06
 		}
 
 
+		[WebMethod]
+		public static string GetFileContent(string fileToLoad)
+		{
+			string filePath = Path.Combine(HttpContext.Current.Server.MapPath("MyFiles"), fileToLoad);
+			string fileStatus;
+			string fileContent;
+
+			if (File.Exists(filePath))
+			{
+
+				fileStatus = "Success";
+				// Gets file directory and all files, and appends the files found in MyFiles;
+				fileContent = File.ReadAllText(filePath);
+			}
+			else
+			{
+				fileStatus = "Fail";
+				fileContent = "File Not Found";
+			}
+
+			// return built string in json
+			string jsonData = JsonConvert.SerializeObject(new { status = fileStatus, content = fileContent });
+			return jsonData;
+		}
 
 	}
 }
