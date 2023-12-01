@@ -7,13 +7,19 @@
     <meta charset="utf-8" />
     <title>Online Text Editor</title>
     <link rel="stylesheet" href="stylesheet.css"/> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" type="text/javascript"></script>
- 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script type="text/javascript">
-        var jQueryXMLHttpRequest; 
+        var jQueryXMLHttpRequest;
+        var currentOpenedFile = "";
+        var textWritten = false;
+        //var textLoaded = false;
         $(document).ready(function () {
 
 
+            
             // Add Conditional here, if first time, MaYBE
             fillListWithFileNames();
             /*
@@ -28,19 +34,65 @@
                 $("#saving_bt").prop("disabled", false);
                 $("#saving_as_bt").prop("disabled", false);
 
+                
+                 textWritten = true;
+                
+
+
             });
 
             /*
                 Load file button is clicked it will make a post request ot get the contents of a the file that is requsted
             */
             $("#load_file_bt").click(function () {
-                 
-                var fileName = $("#file_drop_down_list option:selected").text();
-                getFileContent(fileName);
+
+
+                if (textWritten == true) {
+
+                    // ASK ARE THEY SURE
+                    $.confirm({
+                        title: "Are you sure?",
+                        content: "You have unsaved changes, are you sure you want to overrwrite?",
+                        buttons: {
+                            confirm: function () {
+                                var fileName = $("#file_drop_down_list option:selected").text();
+                                getFileContent(fileName);
+                                textWritten = false;
+                               
+
+                            },
+                            cancel: function () {
+
+                            }
+                        }
+                    });
+
+                }
+                else {
+                    var fileName = $("#file_drop_down_list option:selected").text();
+                    getFileContent(fileName);
+                    textWritten = false;
+                   
+                }
+            
 
                 // Prevent Form Submission
                 return false;
             });
+
+
+            $("#saving_bt").click(function () {
+
+                // Check if current file Opened or not
+                if (currentOpenedfile != "") {
+
+                    // Trigger Save As Option
+                }
+                saveFile(currentOpenedFile);
+                return false;
+
+
+            })
         });
 
         /*
@@ -109,7 +161,8 @@
                         response = $.parseJSON(content.d);
                        
                         $("#main_editor_text_editor").val(response.content);
-                        alert("test");
+                        
+                        currentOpenedFile = name;
                     }
                 },
                 fail: function () {
@@ -118,7 +171,17 @@
                 }
             });
         }
-   
+
+
+        function saveFile(name) {
+
+            // Stores Content and Name of File
+            var jsonData = { fileToSave: name, content: $("main_editor_text_editor").val() };
+            var jsonString = JSON.stringify(jsonData);
+
+
+
+        }
         // Drop Down List Select, IF select grab thee text and display it -> Indicate a mess as well that it has been selected
 
         // BUtton Press Function Jquery Save
