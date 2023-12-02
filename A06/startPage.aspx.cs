@@ -15,8 +15,6 @@ namespace A06
 	{
 
 
-
-
 		[WebMethod]
 		public static string GetFileList()
 		{

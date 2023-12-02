@@ -81,13 +81,12 @@
             });
 
             $("#saving_bt").click(function () {
-                $alert("Yes")
                
                 // Check if current file Opened or not
-                if (currentOpenedfile != "") {
+              //  if (currentOpenedfile != "") {
 
                     // Trigger Save As Option
-                }
+                //}
             
                 saveFile(currentOpenedFile);
 
@@ -183,11 +182,12 @@
         function saveFile(name) {
 
             // Stores Content and Name of File
-
-            var jsonData = { fileToSave: name, content: $("main_editor_text_editor").val() };
+            var textContent = $("main_editor_text_editor").val();
+            var jsonData = { fileToSave: name, content: textContent };
             var jsonString = JSON.stringify(jsonData);
 
-            $alert(jsonData);
+            
+            alert(jsonData.content);
             jQueryXMLHttpRequest = $.ajax({
                 type: "POST",
                 url: "startPage.aspx/SaveFile",
