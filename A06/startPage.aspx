@@ -182,7 +182,7 @@
         function saveFile(name) {
 
             // Stores Content and Name of File
-            var textContent = $("main_editor_text_editor").val();
+            var textContent = $("#main_editor_text_editor").val();
             var jsonData = { fileToSave: name, content: textContent };
             var jsonString = JSON.stringify(jsonData);
 
