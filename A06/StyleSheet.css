@@ -36,29 +36,32 @@
    display:flex;
    align-items:center;
    justify-content:center;
-   flex-direction:column
+   flex-direction:column;
+}
+
+#file_drop_down_list {
+    max-width: 200px;
+    
 }
 
 .text_editor_box{
     display: inline-flex;
-    
     flex-direction:column;
     width: 75%;
     height: 75%;
-    justify-content:space-between
+    justify-content:space-between;
 
 }
 
 #main_editor_text_editor {
     flex-grow: 50;
+   
 }
 
-
-#character_count_box{
-
+#character_count_box {
     margin-right: 5%;
 }
-#text_editor_tool_bar{
 
-
+#save_as_file_name {
+    max-width: 250px;
 }
