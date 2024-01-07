@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Online-Text-Editor", "A06\Online-Text-Editor.csproj", "{11E63F8A-D016-46D9-9D73-6691FEC986A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Online-Text-Editor", "Online-Text-Editor.csproj", "{11E63F8A-D016-46D9-9D73-6691FEC986A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {83849F9B-8613-48F7-A119-AF8281B921A2}
+		SolutionGuid = {1AAE5A21-2BDD-4BF3-BB55-67C363B14836}
 	EndGlobalSection
 EndGlobal
